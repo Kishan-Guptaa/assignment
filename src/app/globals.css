@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@400;700&family=Outfit:wght@400;600;900&family=Space+Mono:wght@400;700&display=swap');
+
+@layer base {
+  :root {
+    /* Warm Notebook Paper color palette */
+    --background: 44 40% 96%; /* #FAF6EE */
+    --foreground: 220 20% 10%; /* #141416 */
+    
+    --card: 40 30% 98%; /* Warm white */
+    --card-foreground: 220 20% 10%;
+    
+    --popover: 40 30% 98%;
+    --popover-foreground: 220 20% 10%;
+    
+    --primary: 262 80% 50%; /* Sketchy Violet */
+    --primary-foreground: 44 40% 96%;
+    
+    --secondary: 160 70% 35%; /* Sketchy Green */
+    --secondary-foreground: 44 40% 96%;
+    
+    --muted: 44 20% 90%;
+    --muted-foreground: 220 10% 40%;
+    
+    --accent: 262 80% 70%;
+    --accent-foreground: 220 20% 10%;
+    
+    --destructive: 0 75% 50%;
+    --destructive-foreground: 44 40% 96%;
+
+    --border: 220 20% 10%; /* Hand-drawn black ink */
+    --input: 220 20% 10%;
+    --ring: 262 80% 50%;
+    
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Chalkboard / Charcoal color palette */
+    --background: 240 10% 10%; /* #18181C */
+    --foreground: 40 15% 90%; /* Chalk White */
+    
+    --card: 240 10% 12%;
+    --card-foreground: 40 15% 90%;
+    
+    --popover: 240 10% 12%;
+    --popover-foreground: 40 15% 90%;
+    
+    --primary: 262 80% 65%; /* Glowing Violet Chalk */
+    --primary-foreground: 240 10% 10%;
+    
+    --secondary: 160 65% 55%; /* Glowing Emerald Chalk */
+    --secondary-foreground: 240 10% 10%;
+    
+    --muted: 240 10% 18%;
+    --muted-foreground: 240 5% 65%;
+    
+    --accent: 262 80% 75%;
+    --accent-foreground: 240 10% 10%;
+    
+    --destructive: 0 70% 60%;
+    --destructive-foreground: 44 40% 96%;
+
+    --border: 40 15% 90%; /* Chalk white borders */
+    --input: 40 15% 90%;
+    --ring: 262 80% 65%;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground transition-colors duration-300 bg-grid-notebook;
+    font-family: 'Outfit', -apple-system, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Architects Daughter', cursive;
+  }
+  
+  option {
+    color: #0f172a; /* slate-900 */
+    background-color: #ffffff;
+  }
+}
+
+/* Notebook / Chalkboard Grid Patterns */
+.bg-grid-notebook {
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(109, 40, 217, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(109, 40, 217, 0.05) 1px, transparent 1px);
+}
+.dark .bg-grid-notebook {
+  background-image: 
+    linear-gradient(to right, rgba(167, 139, 250, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(167, 139, 250, 0.04) 1px, transparent 1px);
+}
+
+@layer components {
+  /* Dynamic Hand-drawn Scribble Borders */
+  .scribble-border {
+    border: 2px solid hsl(var(--border));
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px !important;
+  }
+
+  .scribble-card {
+    border: 2px solid hsl(var(--border));
+    border-radius: 255px 20px 225px 20px / 20px 225px 20px 255px;
+    background-color: hsl(var(--card));
+    box-shadow: 4px 4px 0 0 hsl(var(--border));
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+  }
+  .scribble-card:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 6px 6px 0 0 hsl(var(--border));
+  }
+
+  .scribble-button {
+    font-family: 'Architects Daughter', cursive;
+    border: 2px solid hsl(var(--border));
+    border-radius: 225px 15px 255px 15px / 15px 255px 15px 225px;
+    transition: all 0.15s ease-in-out;
+    box-shadow: 3px 3px 0 0 hsl(var(--border));
+  }
+  .scribble-button:hover {
+    transform: translate(-1.5px, -1.5px);
+    box-shadow: 5px 5px 0 0 hsl(var(--border));
+  }
+  .scribble-button:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 0 hsl(var(--border));
+  }
+
+  .scribble-input {
+    border: 2px solid hsl(var(--border));
+    border-radius: 255px 12px 225px 12px / 12px 225px 12px 255px;
+    background-color: transparent;
+    outline: none;
+  }
+  .scribble-input:focus {
+    @apply ring-1 ring-primary border-primary;
+  }
+}
+
+/* Font styles */
+.font-hand {
+  font-family: 'Caveat', cursive;
+}
+.font-scribble {
+  font-family: 'Architects Daughter', cursive;
+}
+.font-mono {
+  font-family: 'Space Mono', monospace;
+}
+
+/* Custom scrollbars for chalkboard */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border: 1px solid hsl(var(--border));
+  border-radius: 10px;
+  background-color: hsl(var(--muted));
+}
